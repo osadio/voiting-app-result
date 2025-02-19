@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/nodejs:10
+FROM public.ecr.aws/bitnami/node:10
 
 # add curl for healthcheck
 #RUN apt-get update \
