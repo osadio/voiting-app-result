@@ -24,7 +24,7 @@ io.sockets.on('connection', function (socket) {
 });
 
 var pool = new pg.Pool({
-  connectionString: 'postgres://postgres:postgres@db/postgres'
+  connectionString: 'postgres://postgres:postgres@voting-app-postgres-service.voting-app/postgres'
 });
 
 async.retry(
@@ -32,7 +32,7 @@ async.retry(
   function(callback) {
     pool.connect(function(err, client, done) {
       if (err) {
-        console.error("Waiting for db");
+        console.error("Waiting for voting-app-postgres-service.voting-app");
       }
       callback(err, client);
     });
@@ -41,7 +41,7 @@ async.retry(
     if (err) {
       return console.error("Giving up");
     }
-    console.log("Connected to db");
+    console.log("Connected to voting-app-postgres-service.voting-app");
     getVotes(client);
   }
 );
